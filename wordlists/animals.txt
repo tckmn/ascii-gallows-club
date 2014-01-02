@@ -29,6 +29,7 @@ horse
 kangaroo
 kitten
 lion
+llama
 lobster
 monkey
 octopus
