@@ -28,7 +28,7 @@ def header():
 def choose_category():
     "Request the user to input a category."
     for i, cat in enumerate(categories):  # print the categories & numbers
-        print('%i. %s' % [i, cat])
+        print('%i. %s' % (i, cat))
     choice = input('Please enter a category name or number: ').lower()
     if choice.isdigit() and 0 <= int(choice) < len(categories):
         choice = categores[int(choice)]
