@@ -65,7 +65,8 @@ Bell Pepper
 Pear
 Persimmon
 Physalis
-Plum/prune
+Plum
+Prune
 Pineapple
 Pomegranate
 Pomelo
