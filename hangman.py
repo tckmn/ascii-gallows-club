@@ -16,10 +16,10 @@ def choose_category():
     print('\n'.join(words.keys()))
     while True:
         choice = input('Please enter a category name: ')
-        if choice in words.keys(): return choice
+        if (choice + '.txt') in words.keys(): return choice
 
 def getword(category):
-    return random.choice(words[category]).rstrip('\n')
+    return random.choice(words[category + '.txt']).rstrip('\n')
 
 def hangman():
     header()
