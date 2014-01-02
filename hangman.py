@@ -146,3 +146,10 @@ def hangman():  # main function
 
 if __name__ == '__main__':
     hangman()
+    while True:
+        again = input('Play again? (y/n): ').lower() == 'y'
+        if again:
+            hangman()
+        else:
+            break
+    print('Goodbye!')
