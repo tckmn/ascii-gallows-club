@@ -9,6 +9,10 @@ import getpass # for 2 player
 # grab all the filenames
 categories = [f.split('.')[0] for f in os.listdir('wordlists')]
 
+debug_mode = input('Debug mode? (y/n): ').lower() == 'y'
+def debug(s):
+    if debug_mode: print('[DEBUG] ' + s)
+
 def print_ASCII(ascii_str):
     "Print ASCII art."
     print(textwrap.dedent(ascii_str))
@@ -111,7 +115,7 @@ def hangman(word):  # main function
     Returns True if the user won, False otherwise.
     """
 
-    print('The word is %s (for debugging purposes)' % word)
+    debug('The word is %s' % word)
 
     # the lines showing the word so far
     guess = ['_' if char != ' ' else ' ' for char in word]
