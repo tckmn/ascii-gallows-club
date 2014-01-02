@@ -16,92 +16,107 @@ def choose_category():
     print('Choose a category:')
     for cat in categories:  # print the categories
         print(cat)
-    while True:  # loop until user enters a valid category
-        choice = input('Please enter a category name: ')
-        if choice in categories:
-            return choice
-        else:
-            print('Invalid category. Please try again.')
+    choice = input('Please enter a category name: ')
+    while choice not in categories:  # loop until user enters a valid category
+        choice = input('Invalid category. Try again: ')
+    return choice
 
-def getword(category):
+def get_word(category):
     "Retrieve a random word from a category."
     with open(category + '.txt') as f:  # use `with` for automatic file closure
         words = f.readlines()
-    return random.choice(words).rstrip('\n')
-    
-def draw_board(bad_guesses):
+    return random.choice(words).rstrip('\n')  # does returning inside a `with` still close the file?
+
+def get_guess(guessed):
+    "Get the user to guess a letter."
+    guess = input('Guess: ')
+    while guess in guessed or len(guess) != 1:  # guess has to be a single letter
+        guess = input('You already guessed that. Try again: ')
+    return guess
+
+def draw_board(bad_guesses, word):
     "Draw the gallows."
+    # OH NO this method has an error
+    # MUST FIX LATER BLAH OH NO AHHHHHH
+    # the """ ... """ strings are causing indentation problems.
+    
+    hangs = list(map(lambda x: x.strip('\n'), [
+"""
+|
+|
+|
+|
+""","""
+|            O
+|
+|
+|
+""","""
+|            O
+|            |
+|            |
+|
+""","""
+|          __O
+|            |
+|            |
+|
+""","""
+|          __O__
+|            |
+|            |
+|
+""","""
+|          __O__
+|            |
+|            |
+|           /
+""","""
+|          __O__
+|            |
+|            |
+|           / \\
+"""
+    ]))
+
     # This is always drawn
-    print("______________")
-    print("| /          |")
-    print("|/           |")
+    print("""______________
+| /          |
+|/           |""")
 
     # different level of hang-ness
-    if bad_guesses == 0:
-        print("|")
-        print("|")
-        print("|")
-        
-    elif bad_guesses == 1:
-        print("|            O")
-        print("|")
-        print("|")
-        print("|")
-
-    elif bad_guesses == 2:
-        print("|            O")
-        print("|            |")
-        print("|            |")
-        print("|")
-
-    elif bad_guesses == 3:
-        print("|          __O")
-        print("|            |")
-        print("|            |")
-        print("|")
-
-    elif bad_guesses == 4:
-        print("|          __O__")
-        print("|            |")
-        print("|            |")
-
-    elif bad_guesses == 5:
-        print("|          __O__")
-        print("|            |")
-        print("|            |")
-        print("|           /")
-
-    else:
-        print("|          __O__")
-        print("|            |")
-        print("|            |")
-        print("|           / \\")
+    print(hangs[bad_guesses])
 
     # this is also always drawn
-    print("|")
-    print("|")
-    print("|")
-    print("|________________|")
-
-    spaces = "__"
-    for i in range(1, len(word)):
-        spaces = spaces + " __"
-
-    # draw spaces - need to put a function here to insert correct guesses in right location
-    print(spaces)
-
-    # Fill print word on spaces using variation of afore-said function 
-    if bad_guesses >= 6:
-        print("You could not guess the word. It was {}".format(word))
+    print("""|
+|
+|
+|________________|
+""")
 
 def hangman():  # main function
     "Play hangman!"
     header()
-    word = getword(choose_category())
+    word = get_word(choose_category())
     print('The word is', word)  # for debugging purposes
     guess = ['_' if char != ' ' else ' ' for char in word]
     guessed = []
-    # insert main loop here
+    bad_guesses = []
+    for _ in range(6):  # main loop
+        print ' '.join(guess)
+        letter = get_guess(guessed)
+        guessed.append(letter)
+        if letter in word:
+            guess = [letter if char == letter else guess_char for char, guess_char in zip(word, guess)]
+            if ''.join(guess) == word:
+                print('Congratulations, you guessed the word: {}!'.format(word))
+                return  # add replay functionality?
+        else:
+            bad_guesses.append(letter)
+            print(letter, 'is not in the word.')
+        print()
+        draw_board(len(bad_guesses))
+    print('You couldn\'t guess the word. It was', word)
 
 if __name__ == '__main__':
     hangman()
