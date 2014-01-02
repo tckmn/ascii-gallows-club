@@ -32,19 +32,9 @@ if __name__ == '__main__':
 
 #input guess
 def get_guess():
-    
-    #input guess
-    guess = input()
-    
-    #test if guess was already input
-    for i in range(0, len(guesses)):
-        if guess == guesses[i]:
-            
-            # Input new guess if so
-            print("You already guessed that.\nTry again")
-            guess = get_guess()
-                
-    # return guess
+    guess = input('Guess: ')
+    while guess in guesses:
+        guess = input('You already guessed that. Try again: ')
     return guess
 
 def draw_board(bad_guesses):
