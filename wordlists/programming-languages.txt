@@ -96,6 +96,7 @@ java fx script
 javascript
 jscript
 julia
+jquery
 korn
 shell
 kotlin
