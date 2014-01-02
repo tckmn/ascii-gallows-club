@@ -117,7 +117,7 @@ def hangman():  # main function
             bad_guesses.append(letter)
             print(letter, 'is not in the word.')
         print()
-        draw_board(len(bad_guesses))
+        draw_board(len(bad_guesses), word)
     print('You couldn\'t guess the word. It was', word)
 
 if __name__ == '__main__':
