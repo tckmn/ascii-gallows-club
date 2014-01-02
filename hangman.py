@@ -169,8 +169,12 @@ if __name__ == '__main__':
             else:
                 break
     else:
-        word = getpass.getpass('Word maker: enter your word (the input will not be shown): ')
-        hangman(word)
+        while True:
+            word = getpass.getpass('Word maker: enter your word (the input will not be shown): ')
+            hangman(word)
+            again = input('Play again? (y/n): ').lower() == 'y'
+            print() # separation
+            if not again: break
 
     print('Goodbye!')
     time.sleep(2)
