@@ -62,6 +62,6 @@ def draw_board(bad_guesses):
     # draw spaces - need to put a function here to insert correct guesses in right location
     print(spaces)
 
-    # Fill print word on spaces using variation of afore-said function
+    # Fill print word on spaces using variation of afore-said function 
     if bad_guesses >= 6:
         print("You could not guess the number. It was {0}".format(word))
