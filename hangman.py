@@ -57,7 +57,7 @@ def draw_board(bad_guesses, word):
     "Draw the gallows."
 
     # ASCII art data
-    hangs = list(map(lambda x: textwrap.dedent(x).strip('\n'), ["""
+    hangs = [textwrap.dedent(x).strip('\n') for x in ["""
         |
         |
         |
@@ -93,7 +93,7 @@ def draw_board(bad_guesses, word):
         |            |
         |           / \\
         """
-    ]))
+    ]]
 
     # This is always drawn
     print_ASCII("""
@@ -109,7 +109,7 @@ def draw_board(bad_guesses, word):
         |
         |
         | %s
-        |________________|""" % ' '.join(map(lambda s: '[%s]' % s, bad_guesses))).strip('\n'))
+        |________________|""" % ' '.join('[%s]' % s for s in bad_guesses)).strip('\n'))
 
 def hangman(word):  # main function
     """
