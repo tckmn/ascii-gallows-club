@@ -46,7 +46,7 @@ def get_word(category):
 
 def get_guess(guessed):
     "Get the user to guess a letter."
-    guess = input('Guess: ')
+    guess = input('Guess: ').lower()
     while guess in guessed or len(guess) != 1: # guess has to be a single letter
         guess = input('You already guessed that. Try again: ' if guess in guessed else 'You must guess a single letter: ')
     return guess
