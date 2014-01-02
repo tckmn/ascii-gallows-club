@@ -31,13 +31,13 @@ def choose_category():
         print('%i. %s' % (i, cat))
     choice = input('Please enter a category name or number: ').lower()
     if choice.isdigit() and 0 <= int(choice) < len(categories):
-        choice = categores[int(choice)]
+        choice = categories[int(choice)]
     for i, cat in enumerate(categories):
         if choice == str(i): choice = cat
     while choice not in categories:  # loop until user enters a valid category
         choice = input('Invalid category. Try again: ')
         if choice.isdigit() and 0 <= int(choice) < len(categories):
-            choice = categores[int(choice)]
+            choice = categories[int(choice)]
     return choice
 
 def get_word(category):
