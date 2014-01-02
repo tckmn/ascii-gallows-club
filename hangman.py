@@ -120,7 +120,7 @@ def hangman(word):  # main function
     debug('The word is %s' % word)
 
     # the lines showing the word so far
-    guess = ['_' if char != ' ' else ' ' for char in word]
+    guess = ['_' if char.isalnum() != ' ' else ' ' for char in word]
 
     # already guessed and wrong guesses
     guessed = []
