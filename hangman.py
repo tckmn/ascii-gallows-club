@@ -55,54 +55,42 @@ def get_guess(guessed):
 
 def draw_board(bad_guesses, word):
     "Draw the gallows."
-
-    # ASCII art data
-    hangs = list(map(lambda x: textwrap.dedent(x).strip('\n'), ["""
-        |
-        |
-        |
-        |
-        ""","""
-        |            O
-        |
-        |
-        |
-        ""","""
-        |            O
-        |            |
-        |            |
-        |
-        ""","""
-        |          __O
-        |            |
-        |            |
-        |
-        ""","""
-        |          __O__
-        |            |
-        |            |
-        |
-        ""","""
-        |          __O__
-        |            |
-        |            |
-        |           /
-        ""","""
-        |          __O__
-        |            |
-        |            |
-        |           / \\
-        """
-    ]))
-
+    
     # This is always drawn
     print_ASCII("""
         ______________
         | /          |
         |/           |""")
 
-    # different level of hang-ness
-    print(hangs[len(bad_guesses)])
+    # gallows is a 2D array which contains spaces, but allows for individual body parts 
+    gallows = []
+    for i in range (0, 4):
+        new = []
+        for j in range (0, 16):
+            new.append(' ')
+        gallows.append(new)
+
+    if len(bad_guesses) > 0:
+        gallows[0][12] = 'O'
+    if len(bad_guesses) > 1:
+        gallows[1][12] = '|'
+        gallows[2][12] = '|'
+    if len(bad_guesses) > 2:
+        gallows[0][11] = '_'
+        gallows[0][10] = '_'
+    if len(bad_guesses) > 3:
+        gallows[0][13] = '_'
+        gallows[0][14] = '_'
+    if len(bad_guesses) > 4:
+        gallows[3][11] = '/'
+    if len(bad_guesses) > 5:
+        gallows[3][13] = '\\'
+
+    for x in range(0,4):
+        print('|', end="")
+        for y in range(0,16):
+            print(gallows[x][y], end="")
+        print('\n', end="")
 
     # this is also always drawn
     print_ASCII(("""
@@ -110,6 +98,7 @@ def draw_board(bad_guesses, word):
         |
         | %s
         |________________|""" % ' '.join(map(lambda s: '[%s]' % s, bad_guesses))).strip('\n'))
+
 
 def hangman(word):  # main function
     """
