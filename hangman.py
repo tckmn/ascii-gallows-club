@@ -48,7 +48,7 @@ def get_guess(guessed):
     "Get the user to guess a letter."
     guess = input('Guess: ').lower()
     while guess in guessed or len(guess) != 1: # guess has to be a single letter
-        guess = input('You already guessed that. Try again: ' if guess in guessed else 'You must guess a single letter: ')
+        guess = input('You already guessed that. Try again: ' if guess in guessed else 'You must guess a single letter: ').lower()
     return guess
 
 def draw_board(bad_guesses, word):
