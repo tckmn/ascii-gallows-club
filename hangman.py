@@ -28,7 +28,7 @@ def hangman():
 
 if __name__ == '__main__':
     hangman()
-    
+
 
 #input guess
 def get_guess():
@@ -37,63 +37,66 @@ def get_guess():
         guess = input('You already guessed that. Try again: ')
     return guess
 
-def draw_board(bad_guesses):
+def draw_board(bad_guesses, word):
+    # OH NO this method has an error
+    # MUST FIX LATER BLAH OH NO AHHHHHH
+    # the """ ... """ strings are causing indentation problems.
+    
+    hangs = list(map(lambda x: x.strip('\n'), [
+"""
+|
+|
+|
+|
+""","""
+|            O
+|
+|
+|
+""","""
+|            O
+|            |
+|            |
+|
+""","""
+|          __O
+|            |
+|            |
+|
+""","""
+|          __O__
+|            |
+|            |
+|
+""","""
+|          __O__
+|            |
+|            |
+|           /
+""","""
+|          __O__
+|            |
+|            |
+|           / \\
+"""
+    ]))
 
     # This is always drawn
-    print("______________")
-    print("| /          |")
-    print("|/           |")
+    print("""______________
+| /          |
+|/           |""")
 
     # different level of hang-ness
-    if bad_guesses is 0:
-        print("|")
-        print("|")
-        print("|")
-
-    elif bad_guesses is 1:
-        print("|            O")
-        print("|")
-        print("|")
-        print("|")
-
-    elif bad_guesses is 2:
-        print("|            O")
-        print("|            |")
-        print("|            |")
-        print("|")
-
-    elif bad_guesses is 3:
-        print("|          __O")
-        print("|            |")
-        print("|            |")
-        print("|")
-
-    elif bad_guesses is 4:
-        print("|          __O__")
-        print("|            |")
-        print("|            |")
-
-    elif bad_guesses is 5:
-        print("|          __O__")
-        print("|            |")
-        print("|            |")
-        print("|           /")
-
-    else:
-        print("|          __O__")
-        print("|            |")
-        print("|            |")
-        print("|           / \\")
+    print(hangs[bad_guesses])
 
     # this is also always drawn
-    print("|")
-    print("|")
-    print("|")
-    print("|________________|")
+    print("""|
+|
+|
+|________________|
+""")
 
-    spaces = "__"
-    for i in range(1, len(word)):
-        spaces = spaces + " __"
+    spaces = ' '.join(['__'] * len(word))
 
     # draw spaces - need to put a function here to insert correct guesses in right location
     print(spaces)
