@@ -100,6 +100,7 @@ def hangman():  # main function
     word = getword(choose_category())
     print('The word is', word)  # for debugging purposes
     guess = ['_' if char != ' ' else ' ' for char in word]
+    guessed = []
     # insert main loop here
 
 if __name__ == '__main__':
