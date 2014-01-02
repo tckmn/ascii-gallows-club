@@ -9,7 +9,7 @@ import getpass # for 2 player
 # grab all the filenames
 categories = [f.split('.')[0] for f in os.listdir('wordlists')]
 
-debug_mode = input('Debug mode? (y/n): ').lower() == 'y'
+debug_mode = False
 def debug(s):
     if debug_mode: print('[DEBUG] ' + s)
 
@@ -122,8 +122,16 @@ def hangman(word):  # main function
 if __name__ == '__main__':
     header()
     players = input('How many players? 1 for playing against computer, 2 for playing against another human: ')
-    while players not in ['1', '2']:
+    while players not in ['1', '2', 'debug']:
         players = input('Invalid input. Please try again: ')
+
+    # debug mode stuff
+    if players == 'debug':
+        debug_mode = True
+        debug('Debug mode has been turned on.')
+    while players not in ['1', '2']:
+        players = input('Number of players: ')
+
     print() # spacing
 
     if players == '1':
