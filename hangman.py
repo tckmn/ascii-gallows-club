@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
 import random
-import ast
+import os
 
-categories = ['food']
-num_categories = len(categories)
+words = {}
+for f in os.listdir('wordlists'): words[f] = open('wordlists/' + f).readlines()
 
 def header():
     print('/=======================\\\n'
@@ -13,28 +13,18 @@ def header():
 
 def choose_category():
     print('Choose a category:')
-    for idx, cat in enumerate(categories):
-        print('{}. {}'.format(idx + 1, cat))
-    while True:
-        try:
-            n = ast.literal_eval(input())
-            if n < 1 or n > num_categories:
-                raise ValueError
-            break
-        except ValueError:
-            print('Invalid number, try again.')
-    return categories[n - 1]
+    print('\n'.join(words.keys())
+    while 1:
+        choice = input('Please enter a category name: ')
+        return choice if choice in words.keys()
 
 def getword(category):
-    with open(category + '.txt') as f:
-        words = f.readlines()
-    return random.choice(words).rstrip('\n')
+    return random.choice(words[category]).rstrip('\n')
 
 def hangman():
     header()
     word = getword(choose_category())
-    print('Congratulations, you chose a category!')
-    print('You won!')
+    print('The word is %s' % word)
 
 if __name__ == '__main__':
     hangman()
