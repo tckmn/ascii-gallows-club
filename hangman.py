@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 
-import random
-import os
-import textwrap
+import random # for choosing a word
+import os # for finding files in wordlists directory
+import textwrap # for ASCII art dedentation
+import time # for sleeping at the end
 
 # grab all the filenames
 categories = [f.split('.')[0] for f in os.listdir('wordlists')]
@@ -32,13 +33,13 @@ def get_word(category):
     "Retrieve a random word from a category."
     with open('wordlists/%s.txt' % category) as f: # use `with` for automatic file closure
         words = f.readlines()
-    return random.choice(words).rstrip('\n').lower()
+    return random.choice(words).rstrip('\n').lower().strip()
 
 def get_guess(guessed):
     "Get the user to guess a letter."
     guess = input('Guess: ')
-    while guess in guessed or len(guess) != 1:  # guess has to be a single letter
-        guess = input('You already guessed that. Try again: ')
+    while guess in guessed or len(guess) != 1: # guess has to be a single letter
+        guess = input('You already guessed that. Try again: ' if guess in guessed else 'You must guess a single letter: ')
     return guess
 
 def draw_board(bad_guesses, word):
@@ -90,14 +91,14 @@ def draw_board(bad_guesses, word):
         |/           |""")
 
     # different level of hang-ness
-    print(hangs[bad_guesses])
+    print(hangs[len(bad_guesses)])
 
     # this is also always drawn
-    print_ASCII("""
+    print_ASCII(("""
         |
         |
-        |
-        |________________|""".strip('\n'))
+        | %s
+        |________________|""" % ' '.join(bad_guesses)).strip('\n'))
 
 def hangman():  # main function
     """
@@ -137,7 +138,7 @@ def hangman():  # main function
 
         # add a little separation
         print()
-        draw_board(len(bad_guesses), word)
+        draw_board(bad_guesses, word)
 
     # if program reaches here, user failed
     print('You couldn\'t guess the word. It was %s.' % word)
@@ -157,3 +158,4 @@ if __name__ == '__main__':
         else:
             break
     print('Goodbye!')
+    time.sleep(2)
