@@ -1,0 +1,7 @@
+asparagus
+banana
+beans
+cabbage
+chicken
+pasta
+turkey
