@@ -140,14 +140,13 @@ def hangman(word):  # main function
 
             # did they win?
             if ''.join(guess) == word:
-                print('Congratulations, you guessed the word: %s!' % word)
+                print('/nCongratulations, you guessed the word: %s!' % word)
                 return True # TODO add replay functionality?
         else:
             bad_guesses.append(letter)
             print('%s is not in the word.' % letter)
 
         # add a little separation
-        print()
         draw_board(bad_guesses, word)
 
     # if program reaches here, user failed
@@ -166,7 +165,7 @@ if __name__ == '__main__':
         if hangman(get_word(choose_category())): wins += 1
         else: losses += 1
         while True:
-            print('You have won %i time%s and lost %i time%s.' % (wins, '' if wins == 1 else 's', losses, '' if losses == 1 else 's'))
+            print('You have won %i times and lost %i times.' % (wins, losses))
             again = input('Play again? (y/n): ').lower() == 'y'
             print() # separation
             if again:
