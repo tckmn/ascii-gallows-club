@@ -4,7 +4,7 @@ import random
 import os
 
 words = {}
-for f in os.listdir('wordlists'): words[f] = open('wordlists/' + f).readlines()
+for f in os.listdir('wordlists'): words[f.split('.')[0]] = open('wordlists/' + f).readlines()
 
 def header():
     print('/=======================\\\n'
@@ -16,10 +16,10 @@ def choose_category():
     print('\n'.join(words.keys()))
     while True:
         choice = input('Please enter a category name: ')
-        if (choice + '.txt') in words.keys(): return choice
+        if choice in words.keys(): return choice
 
 def getword(category):
-    return random.choice(words[category + '.txt']).rstrip('\n')
+    return random.choice(words[category]).rstrip('\n')
 
 def hangman():
     header()
