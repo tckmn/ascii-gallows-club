@@ -25,6 +25,7 @@ def hangman():
     header()
     word = getword(choose_category())
     print('The word is %s' % word)
+    input()
 
 if __name__ == '__main__':
     hangman()
