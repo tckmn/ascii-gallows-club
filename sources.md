@@ -4,3 +4,4 @@ Here is a list of where the wordlists came from.
 - Fruits: http://simple.wikipedia.org/wiki/List_of_fruits
 - Animals: http://www.manythings.org/vocabulary/lists/a/words.php?f=animals
 - Stack Exchange Sites: http://stackexchange.com/sites#oldest
+- Instruments: http://www.manythings.org/vocabulary/lists/c/words.php?f=musical_instruments

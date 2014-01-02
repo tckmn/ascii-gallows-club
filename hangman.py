@@ -19,9 +19,6 @@ def header():
         | Welcome to Hangman!!! |
         \\=======================/
     """)
-    print_ASCII("""
-
-    """)
 
 def choose_category():
     "Request the user to input a category."
@@ -149,17 +146,25 @@ def hangman():  # main function
 
 if __name__ == '__main__':
     header()
-    wins, losses = 0, 0
-    if hangman(): wins += 1
-    else: losses += 1
-    while True:
-        print('You have won %i times and lost %i times.' % (wins, losses))
-        again = input('Play again? (y/n): ').lower() == 'y'
-        print() # separation
-        if again:
-            if hangman(): wins += 1
-            else: losses += 1
-        else:
-            break
-    print('Goodbye!')
-    time.sleep(2)
+    players = input('How many players? 1 for playing against computer, 2 for playing against another human: ')
+    while players not in ['0', '1']:
+        players = input('Invalid input. Please try again: ')
+    print() # spacing
+
+    if players == '1':
+        wins, losses = 0, 0
+        if hangman(): wins += 1
+        else: losses += 1
+        while True:
+            print('You have won %i times and lost %i times.' % (wins, losses))
+            again = input('Play again? (y/n): ').lower() == 'y'
+            print() # separation
+            if again:
+                if hangman(): wins += 1
+                else: losses += 1
+            else:
+                break
+        print('Goodbye!')
+        time.sleep(2)
+    else:
+        print('Two player not made yet. Please try again later')
