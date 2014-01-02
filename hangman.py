@@ -44,13 +44,13 @@ def get_word(category):
     "Retrieve a random word from a category."
     with open('wordlists/%s.txt' % category) as f: # use `with` for automatic file closure
         words = f.readlines()
-    return random.choice(words).rstrip('\n').lower().strip()
+    return random.choice(words).rstrip('\n').strip().lower()
 
 def get_guess(guessed):
     "Get the user to guess a letter."
     guess = input('Guess: ').lower()
-    while guess in guessed or len(guess) != 1: # guess has to be a single letter
-        guess = input('You already guessed that. Try again: ' if guess in guessed else 'You must guess a single letter: ').lower()
+    while guess in guessed:
+        guess = input('You already guessed that. Try again: ').lower()
     return guess
 
 def draw_board(bad_guesses, word):
@@ -134,14 +134,15 @@ def hangman(word):  # main function
         guessed.append(letter)
 
         # check if letter is correct or not
-        if letter in word:
+        if letter in word or letter == word:
             # update chars guessed so far
             guess = [letter if char == letter else guess_char for char, guess_char in zip(word, guess)]
+            if letter == word: guess = list(word)
 
             # did they win?
             if ''.join(guess) == word:
                 print('Congratulations, you guessed the word: %s!' % word)
-                return True # TODO add replay functionality?
+                return True
         else:
             bad_guesses.append(letter)
             print('%s is not in the word.' % letter)
