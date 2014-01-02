@@ -254,26 +254,17 @@ molasses
 mole sauce
 mozzarella
 muffin
-mug
-munch
 mushroom
 mussels
 mustard
 mustard greens
 mutton
-napkin
 nectar
 nectarine
-nibble
 noodles
 nosh
-nourish
-nourishment
 nut
 nutmeg
-nutrient
-nutrition
-nutritious
 oats
 oatmeal
 oil
@@ -283,11 +274,8 @@ olive
 omelet
 onion
 orange
-order
 oregano
-oven
 oyster
-pan
 pancake
 papaya
 parsley
@@ -360,9 +348,7 @@ sandwich
 sauce
 sauerkraut
 sausage
-savory
 scallops
-scrambled
 seaweed
 seeds
 sesame seed
@@ -371,17 +357,13 @@ sherbet
 shish kebab
 shrimp
 slaw
-slice
 smoked
 snack
 soda
 soda bread
-sole
 sorbet
 sorghum
-sorrel
 soup
-sour
 sour cream
 soy
 soybeans
@@ -392,15 +374,11 @@ spatula
 spices
 spinach
 split peas
-spork
 sprinkles
 sprouts
 squash
 squid
 steak
-stew
-stir-fry
-stomach
 strawberry
 string bean
 strudel
