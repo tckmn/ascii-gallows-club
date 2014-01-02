@@ -166,7 +166,7 @@ if __name__ == '__main__':
         if hangman(get_word(choose_category())): wins += 1
         else: losses += 1
         while True:
-            print('You have won %i times and lost %i times.' % (wins, losses))
+            print('You have won %i time%s and lost %i time%s.' % (wins, '' if wins == 1 else 's', losses, '' if losses == 1 else 's'))
             again = input('Play again? (y/n): ').lower() == 'y'
             print() # separation
             if again:
