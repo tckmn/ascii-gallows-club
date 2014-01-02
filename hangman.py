@@ -105,7 +105,6 @@ def hangman():  # main function
     Returns True if the user won, False otherwise.
     """
 
-    header()
     word = get_word(choose_category())
     print('The word is %s (for debugging purposes)' % word)
 
@@ -145,11 +144,16 @@ def hangman():  # main function
     return False
 
 if __name__ == '__main__':
-    hangman()
+    header()
+    wins, losses = 0, 0
+    if hangman(): wins += 1
+    else: losses += 1
     while True:
+        print('You have won %i times and lost %i times.' % (wins, losses))
         again = input('Play again? (y/n): ').lower() == 'y'
         if again:
-            hangman()
+            if hangman(): wins += 1
+            else: losses += 1
         else:
             break
     print('Goodbye!')
