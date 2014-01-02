@@ -9,6 +9,7 @@ import getpass # for 2 player
 # grab all the filenames
 categories = [f.split('.')[0] for f in os.listdir('wordlists')]
 
+# work in debug mode?
 debug_mode = input('Debug mode? (y/n): ').lower() == 'y'
 def debug(s):
     if debug_mode: print('[DEBUG] ' + s)
@@ -17,44 +18,42 @@ def print_ASCII(ascii_str):
     "Print ASCII art."
     print(textwrap.dedent(ascii_str))
 
+# print header
 def header():
-    "Print the header."
     print_ASCII("""
         /=======================\\
         | Welcome to Hangman!!! |
-        \\=======================/
-    """)
+        \\=======================/""")
 
+# let user pick category
 def choose_category():
-    "Request the user to input a category."
-    for i, cat in enumerate(categories):  # print the categories & numbers
-        print('%i. %s' % (i, cat))
+    for idx,cat in enumerate(categories):  # print the categories & numbers
+        print(idx,'- ',cat)
     choice = input('Please enter a category name or number: ').lower()
-    if choice.isdigit() and 0 <= int(choice) < len(categories):
-        choice = categories[int(choice)]
-    for i, cat in enumerate(categories):
-        if choice == str(i): choice = cat
+    for idx,cat in enumerate(categories):
+        if choice == str(idx): choice = cat
     while choice not in categories:  # loop until user enters a valid category
         choice = input('Invalid category. Try again: ')
-        if choice.isdigit() and 0 <= int(choice) < len(categories):
-            choice = categories[int(choice)]
+        for idx,cat in enumerate(categories):
+            if choice == str(idx): choice = cat
+    print()
     return choice
 
+# get random word from category
 def get_word(category):
-    "Retrieve a random word from a category."
     with open('wordlists/%s.txt' % category) as f: # use `with` for automatic file closure
         words = f.readlines()
     return random.choice(words).rstrip('\n').lower().strip()
 
+# get guess from user
 def get_guess(guessed):
-    "Get the user to guess a letter."
-    guess = input('Guess: ').lower()
+    guess = input('Guess: ')
     while guess in guessed or len(guess) != 1: # guess has to be a single letter
-        guess = input('You already guessed that. Try again: ' if guess in guessed else 'You must guess a single letter: ').lower()
+        guess = input('You already guessed that. Try again: ' if guess in guessed else 'You must guess a single letter: ')
     return guess
 
+# draw gallows
 def draw_board(bad_guesses, word):
-    "Draw the gallows."
 
     # ASCII art data
     hangs = list(map(lambda x: textwrap.dedent(x).strip('\n'), ["""
@@ -111,6 +110,7 @@ def draw_board(bad_guesses, word):
         | %s
         |________________|""" % ' '.join(map(lambda s: '[%s]' % s, bad_guesses))).strip('\n'))
 
+# play game
 def hangman(word):  # main function
     """
     Plays hangman!
@@ -120,7 +120,7 @@ def hangman(word):  # main function
     debug('The word is %s' % word)
 
     # the lines showing the word so far
-    guess = ['_' if char.isalnum() else char for char in word]
+    guess = ['_' if char != ' ' else ' ' for char in word]
 
     # already guessed and wrong guesses
     guessed = []
@@ -140,15 +140,15 @@ def hangman(word):  # main function
 
             # did they win?
             if ''.join(guess) == word:
-                print('Congratulations, you guessed the word: %s!' % word)
-                return True # TODO add replay functionality?
+                print('\nCongratulations, you guessed the word: %s!' % word)
+                return True
         else:
             bad_guesses.append(letter)
             print('%s is not in the word.' % letter)
 
         # add a little separation
-        print()
         draw_board(bad_guesses, word)
+        print()
 
     # if program reaches here, user failed
     print('You couldn\'t guess the word. It was %s.' % word)
@@ -166,7 +166,7 @@ if __name__ == '__main__':
         if hangman(get_word(choose_category())): wins += 1
         else: losses += 1
         while True:
-            print('You have won %i time%s and lost %i time%s.' % (wins, '' if wins == 1 else 's', losses, '' if losses == 1 else 's'))
+            print('You have won %i times and lost %i times.' % (wins, losses))
             again = input('Play again? (y/n): ').lower() == 'y'
             print() # separation
             if again:
