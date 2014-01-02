@@ -19,6 +19,9 @@ def header():
         | Welcome to Hangman!!! |
         \\=======================/
     """)
+    print_ASCII("""
+
+    """)
 
 def choose_category():
     "Request the user to input a category."
@@ -98,7 +101,7 @@ def draw_board(bad_guesses, word):
         |
         |
         | %s
-        |________________|""" % ' '.join(bad_guesses)).strip('\n'))
+        |________________|""" % ' '.join(map(lambda s: '[%s]' % s, bad_guesses))).strip('\n'))
 
 def hangman():  # main function
     """
@@ -152,6 +155,7 @@ if __name__ == '__main__':
     while True:
         print('You have won %i times and lost %i times.' % (wins, losses))
         again = input('Play again? (y/n): ').lower() == 'y'
+        print() # separation
         if again:
             if hangman(): wins += 1
             else: losses += 1
