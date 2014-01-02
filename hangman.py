@@ -4,6 +4,7 @@ import random # for choosing a word
 import os # for finding files in wordlists directory
 import textwrap # for ASCII art dedentation
 import time # for sleeping at the end
+import getpass # for 2 player
 
 # grab all the filenames
 categories = [f.split('.')[0] for f in os.listdir('wordlists')]
@@ -100,13 +101,12 @@ def draw_board(bad_guesses, word):
         | %s
         |________________|""" % ' '.join(map(lambda s: '[%s]' % s, bad_guesses))).strip('\n'))
 
-def hangman():  # main function
+def hangman(word):  # main function
     """
     Plays hangman!
     Returns True if the user won, False otherwise.
     """
 
-    word = get_word(choose_category())
     print('The word is %s (for debugging purposes)' % word)
 
     # the lines showing the word so far
@@ -153,18 +153,20 @@ if __name__ == '__main__':
 
     if players == '1':
         wins, losses = 0, 0
-        if hangman(): wins += 1
+        if hangman(get_word(choose_category())): wins += 1
         else: losses += 1
         while True:
             print('You have won %i times and lost %i times.' % (wins, losses))
             again = input('Play again? (y/n): ').lower() == 'y'
             print() # separation
             if again:
-                if hangman(): wins += 1
+                if hangman(get_word(choose_category())): wins += 1
                 else: losses += 1
             else:
                 break
-        print('Goodbye!')
-        time.sleep(2)
     else:
-        print('Two player not made yet. Please try again later')
+        word = getpass.getpass('Word maker: enter your word (the input will not be shown):')
+        hangman(word)
+
+    print('Goodbye!')
+    time.sleep(2)
