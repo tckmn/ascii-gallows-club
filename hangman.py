@@ -125,7 +125,7 @@ def hangman(word):  # main function
     # already guessed and wrong guesses
     guessed = []
     bad_guesses = []
-    while len(bad_guesses) < 6: # main loop
+    while len(bad_guesses) < 7: # main loop
         # print letters so far
         print(' '.join(guess))
 
