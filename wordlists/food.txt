@@ -3,25 +3,19 @@ alfalfa sprouts
 almond
 anchovy
 anise
-appetizer
-appetite
 apple
 apricot
 artichoke
 asparagus
 aspic
-ate
 avocado
 bacon
 bagel
-bake
 baked Alaska
 bamboo shoots
 banana
-barbecue
 barley
 basil
-batter
 beancurd
 beans
 beef
@@ -29,16 +23,12 @@ beet
 bell pepper
 berry
 biscuit
-bitter
 black beans
 blackberry
 black-eyed peas
 black tea
-bland
 blood orange
 blueberry
-boil
-bowl
 boysenberry
 bran
 bread
@@ -49,7 +39,6 @@ broccoli
 broil
 brownie
 brown rice
-brunch
 Brussels sprouts
 buckwheat
 buns
@@ -64,12 +53,10 @@ cantaloupe
 capers
 caramel
 caramel apple
-carbohydrate
 carrot
 cashew
 cassava
 casserole
-cater
 cauliflower
 caviar
 cayenne pepper
@@ -88,7 +75,6 @@ chili
 chips
 chives
 chocolate
-chopsticks
 chow
 chutney
 cilantro
@@ -103,9 +89,6 @@ cod
 coffee
 coleslaw
 collard greens
-comestibles
-cook
-cookbook
 cookie
 corn
 cornflakes
@@ -135,9 +118,6 @@ dandelion greens
 Danish pastry
 dates
 dessert
-diet
-digest
-digestive system
 dill
 dine
 diner
@@ -148,56 +128,36 @@ dough
 doughnut
 dragonfruit
 dressing
-dried
-drink
-dry
 durian
-eat
-Edam cheese
-edible
+edam cheese
 egg
 eggplant
 elderberry
 endive
 entree
-fast
-fat
-fava bans
-feast
-fed
-feed
+fava beans
 fennel
 fig
 fillet
-fire
 fish
 flan
 flax
 flour
-food
-food pyramid
-foodstuffs
-fork
-freezer
-French fries
-fried
+french fries
 fritter
 frosting
 fruit
 fry
 garlic
-gastronomy
 gelatin
 ginger
 gingerale
 gingerbread
-glasses
-Gouda cheese
+gouda cheese
 grain
 granola
 grape
 grapefruit
-grated
 gravy
 greenbean
 greens
@@ -216,13 +176,9 @@ herbs
 honey
 honeydew
 horseradish
-hot
 hot dog
 hot sauce
 hummus
-hunger
-hungry
-ice
 iceberg lettuce
 iced tea
 icing
@@ -235,20 +191,16 @@ jelly
 jellybeans
 jicama
 jimmies
-Jordan almonds
-jug
+jordan almonds
 julienne
 juice
-junk food
 kale
 kebab
 ketchup
 kettle
 kettle corn
 kidney beans
-kitchen
 kiwi
-knife
 kohlrabi
 kumquat
 ladle
@@ -269,8 +221,6 @@ lobster
 lollipop
 loquat
 lox
-lunch
-lunch box
 lunchmeat
 lychee
 macaroni
@@ -292,7 +242,6 @@ meatloaf
 melon
 menu
 meringue
-micronutrient
 milk
 milkshake
 millet
@@ -332,7 +281,6 @@ okra
 oleo
 olive
 omelet
-omnivore
 onion
 orange
 order
@@ -360,17 +308,12 @@ pepper
 pepperoni
 persimmon
 pickle
-picnic
 pie
 pilaf
 pineapple
 pita bread
-pitcher
 pizza
-plate
-platter
 plum
-poached
 pomegranate
 pomelo
 pop
@@ -379,14 +322,11 @@ popcorn
 popovers
 pork
 pork chops
-pot
 potato
 pot roast
 preserves
 pretzel
 prime rib
-protein
-provisions
 prune
 pudding
 pumpernickel
@@ -399,9 +339,6 @@ raisin
 raspberry
 rations
 ravioli
-recipe
-refreshments
-refrigerator
 relish
 restaurant
 rhubarb
@@ -409,7 +346,6 @@ ribs
 rice
 roast
 roll
-rolling pin
 romaine
 rosemary
 rye
@@ -454,43 +390,31 @@ spaghetti
 spareribs
 spatula
 spices
-spicy
 spinach
 split peas
-spoon
 spork
 sprinkles
 sprouts
-spuds
 squash
 squid
 steak
 stew
 stir-fry
 stomach
-stove
-straw
 strawberry
 string bean
-stringy
 strudel
-sub sandwich
-submarine sandwich
 succotash
-suet
 sugar
 summer squash
 sundae
 sunflower
-supper
 sushi
-sustenance
 sweet
 sweet potato
-Swiss chard
+swiss chard
 syrup
 taco
-take-out
 tamale
 tangerine
 tapioca
@@ -515,14 +439,11 @@ turkey
 turmeric
 turnip
 ugli fruit
-unleavened
-utensils
 vanilla
 veal
 vegetable
 venison
 vinegar
-vitamin
 wafer
 waffle
 walnut
