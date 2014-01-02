@@ -7,17 +7,23 @@ import textwrap
 # grab all the filenames
 categories = [f.split('.')[0] for f in os.listdir('wordlists')]
 
+def print_ASCII(ascii_str):
+    "Print ASCII art."
+    print(textwrap.dedent(ascii_str))
+
 def header():
     "Print the header."
-    print('/=======================\\\n'
-          '| Welcome to Hangman!!! |\n'
-          '\\=======================/\n')
+    print_ASCII("""
+        /=======================\\
+        | Welcome to Hangman!!! |
+        \\=======================/
+    """)
 
 def choose_category():
     "Request the user to input a category."
     for cat in categories:  # print the categories
         print(cat)
-    choice = input('Please enter a category name: ')
+    choice = input('Please enter a category name: ').lower()
     while choice not in categories:  # loop until user enters a valid category
         choice = input('Invalid category. Try again: ')
     return choice
@@ -26,7 +32,7 @@ def get_word(category):
     "Retrieve a random word from a category."
     with open('wordlists/%s.txt' % category) as f: # use `with` for automatic file closure
         words = f.readlines()
-    return random.choice(words).rstrip('\n')
+    return random.choice(words).rstrip('\n').lower()
 
 def get_guess(guessed):
     "Get the user to guess a letter."
@@ -78,23 +84,27 @@ def draw_board(bad_guesses, word):
     ]))
 
     # This is always drawn
-    print(textwrap.dedent("""
+    print_ASCII("""
         ______________
         | /          |
-        |/           |"""))
+        |/           |""")
 
     # different level of hang-ness
     print(hangs[bad_guesses])
 
     # this is also always drawn
-    print(textwrap.dedent("""
+    print_ASCII("""
         |
         |
         |
-        |________________|""").strip('\n'))
+        |________________|""".strip('\n'))
 
 def hangman():  # main function
-    "Play hangman!"
+    """
+    Plays hangman!
+    Returns True if the user won, False otherwise.
+    """
+
     header()
     word = get_word(choose_category())
     print('The word is %s (for debugging purposes)' % word)
@@ -121,17 +131,18 @@ def hangman():  # main function
             # did they win?
             if ''.join(guess) == word:
                 print('Congratulations, you guessed the word: %s!' % word)
-                return # TODO add replay functionality?
+                return True # TODO add replay functionality?
         else:
             bad_guesses.append(letter)
             print('%s is not in the word.' % letter)
 
-        # separate
+        # add a little separation
         print()
         draw_board(len(bad_guesses), word)
 
     # if program reaches here, user failed
     print('You couldn\'t guess the word. It was %s.' % word)
+    return False
 
 if __name__ == '__main__':
     hangman()
