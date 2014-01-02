@@ -53,63 +53,27 @@ def get_guess(guessed):
         guess = input('You already guessed that. Try again: ').lower()
     return guess
 
+# draw gallows
 def draw_board(bad_guesses, word):
-    "Draw the gallows."
 
-    # ASCII art data
-    hangs = [textwrap.dedent(x).strip('\n') for x in ["""
-        |
-        |
-        |
-        |
-        ""","""
-        |            O
-        |
-        |
-        |
-        ""","""
-        |            O
-        |            |
-        |            |
-        |
-        ""","""
-        |          __O
-        |            |
-        |            |
-        |
-        ""","""
-        |          __O__
-        |            |
-        |            |
-        |
-        ""","""
-        |          __O__
-        |            |
-        |            |
-        |           /
-        ""","""
-        |          __O__
-        |            |
-        |            |
-        |           / \\
-        """
-    ]]
+    length = len(bad_guesses)
 
-    # This is always drawn
+    # this is also always drawn
     print_ASCII("""
         ______________
         | /          |
-        |/           |""")
-
-    # different level of hang-ness
-    print(hangs[len(bad_guesses)])
-
-    # this is also always drawn
-    print_ASCII(("""
+        |/           |
+        |{0}          {2}{1}{3}
+        |            {4}
+        |            {5}
+        |           {6} {7}
         |
         |
-        | %s
-        |________________|""" % ' '.join('[%s]' % s for s in bad_guesses)).strip('\n'))
+        | {8}
+        |________________|""".format('  ' if length == 1 else '', 'O' if length > 0 else '', '__' if len(bad_guesses) > 1 else '',
+                                     '__' if len(bad_guesses) > 2 else '', '|' if length > 2 else '', '|' if length > 3 else '',
+                                     '/' if length > 3 else '', '\\' if length > 4 else '',
+                                     ' '.join(map(lambda s: '[%s]' % s, bad_guesses))).strip('\n'))
 
 def hangman(word):  # main function
     """
