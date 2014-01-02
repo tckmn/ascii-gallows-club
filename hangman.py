@@ -13,10 +13,10 @@ def header():
 
 def choose_category():
     print('Choose a category:')
-    print('\n'.join(words.keys())
-    while 1:
+    print('\n'.join(words.keys()))
+    while True:
         choice = input('Please enter a category name: ')
-        return choice if choice in words.keys()
+        if choice in words.keys(): return choice
 
 def getword(category):
     return random.choice(words[category]).rstrip('\n')
@@ -28,7 +28,7 @@ def hangman():
 
 if __name__ == '__main__':
     hangman()
-    
+
 def draw_board(bad_guesses):
 
 
@@ -43,7 +43,7 @@ def draw_board(bad_guesses):
         print("|")
         print("|")
         print("|")
-        
+
     elif bad_guesses is 1:
         print("|            O")
         print("|")
@@ -101,6 +101,6 @@ def draw_board(bad_guesses):
     print(spaces)
 
 
-    # Fill print word on spaces using variation of afore-said function 
+    # Fill print word on spaces using variation of afore-said function
     if bad_guesses >= 6:
         print("You could not guess the number. It was {0}".format(word))
