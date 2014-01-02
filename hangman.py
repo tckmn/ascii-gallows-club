@@ -147,7 +147,7 @@ def hangman(word):  # main function
 if __name__ == '__main__':
     header()
     players = input('How many players? 1 for playing against computer, 2 for playing against another human: ')
-    while players not in ['0', '1']:
+    while players not in ['1', '2']:
         players = input('Invalid input. Please try again: ')
     print() # spacing
 
@@ -165,7 +165,7 @@ if __name__ == '__main__':
             else:
                 break
     else:
-        word = getpass.getpass('Word maker: enter your word (the input will not be shown):')
+        word = getpass.getpass('Word maker: enter your word (the input will not be shown): ')
         hangman(word)
 
     print('Goodbye!')
