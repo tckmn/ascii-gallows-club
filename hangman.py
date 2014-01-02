@@ -4,7 +4,8 @@ import random
 import os
 import textwrap
 
-categories = [f.split('.')[0] for f in os.listdir('wordlists')]  # avoid having to put everything in memory?
+# grab all the filenames
+categories = [f.split('.')[0] for f in os.listdir('wordlists')]
 
 def header():
     "Print the header."
@@ -13,6 +14,7 @@ def header():
           '\\=======================/\n')
 
 def choose_category():
+    "Request the user to input a category."
     for cat in categories:  # print the categories
         print(cat)
     choice = input('Please enter a category name: ')
@@ -22,9 +24,9 @@ def choose_category():
 
 def get_word(category):
     "Retrieve a random word from a category."
-    with open('wordlists/%s.txt' % category) as f:  # use `with` for automatic file closure
+    with open('wordlists/%s.txt' % category) as f: # use `with` for automatic file closure
         words = f.readlines()
-    return random.choice(words).rstrip('\n')  # does returning inside a `with` still close the file?
+    return random.choice(words).rstrip('\n')
 
 def get_guess(guessed):
     "Get the user to guess a letter."
@@ -36,6 +38,7 @@ def get_guess(guessed):
 def draw_board(bad_guesses, word):
     "Draw the gallows."
 
+    # ASCII art data
     hangs = list(map(lambda x: textwrap.dedent(x).strip('\n'), ["""
         |
         |
@@ -88,37 +91,47 @@ def draw_board(bad_guesses, word):
         |
         |
         |
-        |________________|
-    """))
-
-    spaces = ' '.join(['__'] * len(word))
-
-    # draw spaces - need to put a function here to insert correct guesses in right location
-    print(spaces)
+        |________________|""").strip('\n'))
 
 def hangman():  # main function
     "Play hangman!"
     header()
     word = get_word(choose_category())
-    print('The word is', word)  # for debugging purposes
+    print('The word is %s (for debugging purposes)' % word)
+
+    # the lines showing the word so far
     guess = ['_' if char != ' ' else ' ' for char in word]
+
+    # already guessed and wrong guesses
     guessed = []
     bad_guesses = []
-    for _ in range(6):  # main loop
+    while len(bad_guesses) < 6: # main loop
+        # print letters so far
         print(' '.join(guess))
+
+        # request input
         letter = get_guess(guessed)
         guessed.append(letter)
+
+        # check if letter is correct or not
         if letter in word:
+            # update chars guessed so far
             guess = [letter if char == letter else guess_char for char, guess_char in zip(word, guess)]
+
+            # did they win?
             if ''.join(guess) == word:
-                print('Congratulations, you guessed the word: {}!'.format(word))
-                return  # add replay functionality?
+                print('Congratulations, you guessed the word: %s!' % word)
+                return # TODO add replay functionality?
         else:
             bad_guesses.append(letter)
-            print(letter, 'is not in the word.')
+            print('%s is not in the word.' % letter)
+
+        # separate
         print()
-        draw_board(len(bad_guesses))
-    print('You couldn\'t guess the word. It was', word)
+        draw_board(len(bad_guesses), word)
+
+    # if program reaches here, user failed
+    print('You couldn\'t guess the word. It was %s.' % word)
 
 if __name__ == '__main__':
     hangman()
