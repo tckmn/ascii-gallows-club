@@ -23,11 +23,15 @@ def header():
 
 def choose_category():
     "Request the user to input a category."
-    for cat in categories:  # print the categories
-        print(cat)
-    choice = input('Please enter a category name: ').lower()
+    for idx,cat in enumerate(categories):  # print the categories & numbers
+        print(idx,'- ',cat)
+    choice = input('Please enter a category name or number: ').lower()
+    for idx,cat in enumerate(categories):
+        if choice == str(idx): choice = cat
     while choice not in categories:  # loop until user enters a valid category
         choice = input('Invalid category. Try again: ')
+        for idx,cat in enumerate(categories):
+            if choice == str(idx): choice = cat
     return choice
 
 def get_word(category):
