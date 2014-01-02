@@ -31,6 +31,7 @@ kitten
 leopard
 lion
 lizard
+llama
 lobster
 monkey
 octopus
